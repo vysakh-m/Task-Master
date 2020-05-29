@@ -2,7 +2,7 @@ const express=require('express');
 const bodyParser = require("body-parser");
 const mongoose=require('mongoose');
 const app=express();
-
+const passport = require('passport');
 //Body-Parser
 app.use(bodyParser.urlencoded({
   extended: true
@@ -16,6 +16,9 @@ mongoose.connect(uri, {
   useUnifiedTopology: true
 });
 
+//Passport
+app.use(passport.initialize());
+require('./config/passport')(passport);
 //Importing Routes
 app.use('/user',require('./routes/user'));
 

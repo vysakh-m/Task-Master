@@ -6,8 +6,7 @@ const jwt= require('jsonwebtoken');
 const passport = require('passport');
 
 const User=require('../models/user');
-const List=require('../models/lists');
-
+const keys=require('../config/keys')
 
 router.use(bodyParser.urlencoded({
   extended: true
@@ -39,5 +38,46 @@ router.post('/register',(req,res)=>{
   })
 })
 
+
+router.post('/login',(req,res)=>{
+  console.log(req.body.user)
+  User.findOne({email:req.body.email})
+  .then(user=>{
+    if(!user){
+      res.json({status:"User not Found"})
+    }else{
+      bcrypt.compare(req.body.password,user.password)
+      .then(isMatch=>{
+        if(isMatch){
+          const payload = { id:user.id, name: user.name, email:user.email }; // Create JWT Payload
+          console.log(payload)
+        // Sign Token
+        jwt.sign(
+          payload,
+          keys.passport_key,
+          { expiresIn: 3600 },
+          (err, token) => {
+            return res.json({
+              success: true,
+              token: 'Bearer ' + token
+            });
+          }
+        );
+        }else{
+          return res.json({
+            status:"Password mismatch"
+          })
+        }
+      })
+    }
+  })
+})
+
+router.get('/current-user',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  res.json({
+    name:req.user.name,
+    email:req.user.email
+  })
+})
 
 module.exports=router;
