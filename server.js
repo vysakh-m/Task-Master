@@ -19,8 +19,11 @@ mongoose.connect(uri, {
 //Passport
 app.use(passport.initialize());
 require('./config/passport')(passport);
+
+
 //Importing Routes
 app.use('/user',require('./routes/user'));
+app.use('/list',require('./routes/list'));
 
 
 app.get('/',(req,res)=>{
