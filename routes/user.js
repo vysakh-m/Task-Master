@@ -6,13 +6,22 @@ const jwt= require('jsonwebtoken');
 const passport = require('passport');
 
 const User=require('../models/user');
-const keys=require('../config/keys')
+const keys=require('../config/keys');
+const validateLoginInput=require('../validation/user-login');
+const validateRegisterInput=require('../validation/user-signup');
+
+
 
 router.use(bodyParser.urlencoded({
   extended: true
 }));
 
 router.post('/register',(req,res)=>{
+  const { errors, isValid } = validateRegisterInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({email:req.body.email})
   .then(user=>{
     if(user){
@@ -40,17 +49,21 @@ router.post('/register',(req,res)=>{
 
 
 router.post('/login',(req,res)=>{
-  console.log(req.body.user)
+  const { errors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({email:req.body.email})
   .then(user=>{
     if(!user){
-      res.json({status:"User not Found"})
+      errors.email="User not found "
+      res.status(400).json(errors);
     }else{
       bcrypt.compare(req.body.password,user.password)
       .then(isMatch=>{
         if(isMatch){
           const payload = { id:user.id, name: user.name, email:user.email }; // Create JWT Payload
-          console.log(payload)
         // Sign Token
         jwt.sign(
           payload,
@@ -64,9 +77,8 @@ router.post('/login',(req,res)=>{
           }
         );
         }else{
-          return res.json({
-            status:"Password mismatch"
-          })
+          errors.password="Password incorrect";
+          return res.status(400).json(errors)
         }
       })
     }
