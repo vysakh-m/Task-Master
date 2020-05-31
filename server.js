@@ -7,7 +7,7 @@ const passport = require('passport');
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
+app.use(bodyParser.json());
 //MongoDB Authentication
 const uri = require('./config/keys').mongo;
 mongoose.connect(uri, {
