@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import "../../styles/register.css";
-import { GET_ERRORS } from "../../actions/types";
+
 
 class Register extends Component {
   constructor(props) {
