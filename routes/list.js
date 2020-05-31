@@ -6,6 +6,20 @@ const passport=require('passport')
 const User=require('../models/user');
 const List=require('../models/lists');
 
+
+router.get('/view',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  List.find({email:req.user.email})
+  .then(list=>{
+    if(list){
+      return res.json(list[0].data)
+    }else{
+      return res.json({})
+    }
+  })
+  .catch(err=> res.json({}))
+})
+
+
 router.post('/add',passport.authenticate('jwt',{session:false}),(req,res)=>{
   const newData={
     name:req.body.name,

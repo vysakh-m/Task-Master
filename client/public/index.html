@@ -15,7 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -27,36 +27,48 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link href="css/home.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a51526ee95.js" crossorigin="anonymous"></script>
-	<script>
-      $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        var options={
-          format: 'dd/mm/yyyy',
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/a51526ee95.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container =
+          $(".bootstrap-iso form").length > 0
+            ? $(".bootstrap-iso form").parent()
+            : "body";
+        var options = {
+          format: "dd/mm/yyyy",
           container: container,
           todayHighlight: true,
           autoclose: true,
         };
         date_input.datepicker(options);
-      })
-  </script>
+      });
+    </script>
 
-  <script>
-    $(function(){     
-  var d = new Date(),        
-      h = d.getHours(),
-      m = d.getMinutes();
-  if(h < 10) h = '0' + h; 
-  if(m < 10) m = '0' + m; 
-  $('input[type="time"][value="now"]').each(function(){ 
-    $(this).attr({'value': h + ':' + m});
-  });
-});
-  </script>
+    <script>
+      $(function () {
+        var d = new Date(),
+          h = d.getHours(),
+          m = d.getMinutes();
+        if (h < 10) h = "0" + h;
+        if (m < 10) m = "0" + m;
+        $('input[type="time"][value="now"]').each(function () {
+          $(this).attr({ value: h + ":" + m });
+        });
+      });
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
