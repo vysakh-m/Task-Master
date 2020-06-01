@@ -208,6 +208,8 @@
 .time{
   height: 40px;
   margin-top: 20px;
+}
+.time-error{
   border:1px solid red;
 }
 

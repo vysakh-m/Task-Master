@@ -6,12 +6,31 @@ const passport=require('passport')
 const User=require('../models/user');
 const List=require('../models/lists');
 
+const validateTaskRegistration=require('../validation/task-create');
 
 router.get('/view',passport.authenticate('jwt',{session:false}),(req,res)=>{
   List.find({email:req.user.email})
   .then(list=>{
     if(list){
-      return res.json(list[0].data)
+      var notComplete=list[0].data.filter((item)=>{
+        return item.status!=="Completed"
+      })
+      return res.json(notComplete)
+    }else{
+      return res.json({})
+    }
+  })
+  .catch(err=> res.json({}))
+})
+
+router.get('/view-archive',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  List.find({email:req.user.email})
+  .then(list=>{
+    if(list){
+      var notComplete=list[0].data.filter((item)=>{
+        return item.status==="Completed"
+      })
+      return res.json(notComplete)
     }else{
       return res.json({})
     }
@@ -21,6 +40,10 @@ router.get('/view',passport.authenticate('jwt',{session:false}),(req,res)=>{
 
 
 router.post('/add',passport.authenticate('jwt',{session:false}),(req,res)=>{
+  const { errors, isValid } = validateTaskRegistration(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const newData={
     name:req.body.name,
     label:req.body.label,
@@ -110,13 +133,13 @@ router.post('/archive',passport.authenticate('jwt',{session:false}),(req,res)=>{
 })
 
 
-router.delete('/delete',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.delete('/delete/:id',passport.authenticate('jwt',{session:false}),(req,res)=>{
   List.findOne({email:req.user.email})
   .then(list=>{
     if(list){
       var index;
       for(var i=0;i<list.data.length;i++){
-        if(list.data[i]._id==req.body.id){
+        if(list.data[i]._id==req.params.id){
           index=i;
         }
       }

@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import { deleteTask } from "../../actions/listActions";
 
-export default class Singleresult extends Component {
+ class Singleresult extends Component {
+   constructor(props){
+     super(props);
+     this.onclickDelete=this.onclickDelete.bind(this);
+   }
+
+   onclickDelete(){
+    this.props.deleteTask(this.props.id)
+   }
   render() {
     return (
       <div className="flex-child shadow-lg p-3 mb-5 bg-white rounded">
@@ -22,12 +32,15 @@ export default class Singleresult extends Component {
             </li>
           </ul>
           <div className="card-body">
-            <a href="#" className=" btn btn-dark card-link">Edit Task </a>
-            <a href="#" className=" btn btn-dark card-link">Delete</a>
-            <a href="#" className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</a>
+            <button className=" btn btn-dark card-link">Edit Task</button>
+            <button onClick={this.onclickDelete} className=" btn btn-dark card-link">Delete</button>
+            <button className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</button>
           </div>
         </div>
       </div>
     )
   }
 }
+
+
+export default connect(null,{deleteTask})(Singleresult)

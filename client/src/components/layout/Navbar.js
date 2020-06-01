@@ -17,9 +17,9 @@ class Navbar extends Component {
     const authLinks=(
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
           <li className="nav-item active">
-              <a className="nav-link nav_spac" href="#">
+              <Link className="nav-link nav_spac" to="/home">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link nav_spac" href="#">
@@ -27,9 +27,9 @@ class Navbar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link nav_spac" href="#">
+              <Link className="nav-link nav_spac" to="/color">
                 Color Chart
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
             <a className="nav-link nav_spac" href="" onClick={this.onLogoutClick.bind(this)}>

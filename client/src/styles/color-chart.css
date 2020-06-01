@@ -1,0 +1,73 @@
+.color{
+  width: 25px;
+  height: 25px;
+  background-color: #182C25;
+}
+
+.personal{
+  background-color: #182C25;
+}
+
+.work{
+  background-color: #0F66DA;
+}
+.shopping{
+  background-color:#D3514D;
+}
+
+.others{
+  background-color: #563D7C;
+}
+.new{
+  background-color: #009587;
+}
+.progress{
+  background-color:#FF9700;
+}
+
+.complete{
+  background-color: #364528;
+}
+
+.low{
+  background-color:#008900
+}
+.medium{
+  background-color:#AA8000
+}
+
+.high{
+  background-color:#AA0000
+}
+
+
+.color-flex{
+  display: flex;
+  justify-content: center;
+}
+
+.color-flex h5{
+  font-size: 15px;
+}
+
+.label-container{
+  margin-bottom: 30px;
+}
+
+
+@media only screen and (max-width: 575px) {
+  .color-flex h5{
+    font-size: 10px;
+  }
+  .color{
+    width: 15px;
+    height: 15px;
+  }
+  
+
+}
+
+
+.container{
+  width: 50%;
+}
