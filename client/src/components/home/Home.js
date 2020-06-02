@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Addtask from './Addtask'
 import HomeHeader from './HomeHeader'
 import Results from './Results'
+import Filterbox from './Filterbox'
 import "../../styles/home.css";
 import {getList} from '../../actions/listActions'
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ import { connect } from 'react-redux';
         <hr/>
       <Addtask/>
       <HomeHeader/>
+
       <Results/>
       </div>
       
