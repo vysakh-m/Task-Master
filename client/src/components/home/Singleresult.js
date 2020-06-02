@@ -12,6 +12,35 @@ import { deleteTask } from "../../actions/listActions";
     this.props.deleteTask(this.props.id)
    }
   render() {
+    let style={}
+    if(this.props.label==="Personal"){
+      style.label="l_personal"
+    }else if(this.props.label==="Work"){
+      style.label="l_work"
+    }else if(this.props.label==="Shopping"){
+      style.label="l_shopping"
+    }else if(this.props.label==="Others"){
+      style.label="l_others"
+    }
+
+    if(this.props.status==="New"){
+      style.status="s_new"
+    }else if(this.props.status==="Progress"){
+      style.status="s_progress"
+    }else if(this.props.status==="Completed"){
+      style.status="s_complete"
+    }
+
+
+    if(this.props.priority==="High"){
+      style.priority="p_h"
+    }else if(this.props.priority==="Medium"){
+      style.priority="p_m"
+    }else if(this.props.priority==="Low"){
+      style.priority="p_l"
+    }
+
+
     return (
       <div className="flex-child shadow-lg p-3 mb-5 bg-white rounded">
         <div className="card" style={{width: "18rem"}}>
@@ -27,11 +56,10 @@ import { deleteTask } from "../../actions/listActions";
             </li>
             <li className="list-group-item">
               <div className="tag_style">
-                <p className="card_p l_personal">{this.props.label}</p>
-                <p className="card_p s_new">{this.props.status}</p>
-                <p className="card_p p_l">{this.props.priority}</p>
-              </div>
-              
+                <p className={`card_p  ${style.label}` }>{this.props.label}</p>
+                <p className={`card_p ${style.status}`}>{this.props.status}</p>
+                <p className={`card_p  ${style.priority}`}>{this.props.priority}</p>
+              </div>           
             </li>
           </ul>
           <div className="card-body">

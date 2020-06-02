@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import isEmpty from '../../validation/is-empty'
-import {applyFilter} from '../../actions/filterActions'
+import {applyFilter,exitFilter} from '../../actions/filterActions'
 
 class Filterbox extends Component {
   constructor(props) {
@@ -22,8 +22,9 @@ class Filterbox extends Component {
     this.onChange = this.onChange.bind(this);
     this.onChangeCheck = this.onChangeCheck.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
+    this.onClick = this.onClick.bind(this);
 
-  }
+  } 
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -55,6 +56,11 @@ class Filterbox extends Component {
     console.log(this.props)
     this.props.applyFilter(filterData);
   }
+
+  onClick(){
+    this.props.exitFilter()
+  }
+
   render() {
     return (
       <div className="container">
@@ -149,11 +155,18 @@ class Filterbox extends Component {
                 </div>
               </div>
               <div className="flex-child text-center">
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-cs"
-                  value="Apply Filters"
-                />
+              
+
+                <button type="submit" className="btn btn-primary btn-cs">
+                <i className="fas fa-filter"></i> Apply Filters
+                </button>
+              </div>
+              <div className="flex-child text-center">
+
+                <button type="button"
+                  className="btn btn-danger btn-cs" onClick={this.onClick}>
+                    <i class="fas fa-times-circle"></i> Close
+                </button>
               </div>
             </div>
           </form>
@@ -163,4 +176,4 @@ class Filterbox extends Component {
   }
 }
 
-export default connect(null,{applyFilter})(Filterbox);
+export default connect(null,{applyFilter,exitFilter})(Filterbox);

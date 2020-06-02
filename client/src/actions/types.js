@@ -4,6 +4,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LIST_LOADING = 'LIST_LOADING';
 export const LIST_TASK = 'LIST_TASK';
 export const SELECT_FILTER = 'SELECT_FILTER';
+export const EXIT_FILTER = 'EXIT_FILTER';
 
 
 

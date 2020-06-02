@@ -1,4 +1,4 @@
-import { SELECT_FILTER } from "../actions/types";
+import { SELECT_FILTER,EXIT_FILTER } from "../actions/types";
 
 
 const initialState = {
@@ -13,6 +13,11 @@ export default function (state = initialState, action) {
       return{
         ...state,
         select:true
+      }
+    case EXIT_FILTER:
+      return{
+        ...state,
+        select:false
       }
     default:
       return state;

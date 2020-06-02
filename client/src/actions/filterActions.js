@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {LIST_TASK} from './types'
+import {LIST_TASK,SELECT_FILTER,EXIT_FILTER} from './types'
 import {listLoading} from './listActions'
 export const applyFilter=(data)=>dispatch=>{
   dispatch(listLoading());
@@ -10,4 +10,16 @@ export const applyFilter=(data)=>dispatch=>{
       payload
     })
   })
+}
+
+export const selectFilter=()=>{
+  return{
+    type:SELECT_FILTER
+  }
+}
+
+export const exitFilter=()=>{
+  return{
+    type:EXIT_FILTER
+  }
 }

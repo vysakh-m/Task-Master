@@ -1,23 +1,34 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux'
+import { selectFilter } from "../../actions/filterActions";
 import Filterbox from "./Filterbox";
 
-export default class HomeHeader extends Component {
+class HomeHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      click: false,
+      select:false
     };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(e) {
-    this.setState({
-      click: !this.state.click,
-    });
+    this.props.selectFilter();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.filter) {
+      console.log(nextProps.filter)
+      this.setState({ select: nextProps.filter.select });
+      console.log(this.state)
+    }
+  }
+
   render() {
+    console.log(this.props.filter)
     let content;
-    if (this.state.click) {
+    console.log(this.state)
+    if (this.state.select) {
       content = <Filterbox />;
     } else {
       content = "";
@@ -44,3 +55,8 @@ export default class HomeHeader extends Component {
     );
   }
 }
+const mapStateToProps=(state)=>({
+  filter:state.filter
+});
+
+export default connect(mapStateToProps,{selectFilter})(HomeHeader)
