@@ -150,13 +150,8 @@ router.post(
     };
 
     const removeFalseElements = (object) => {
-      for (const property in object) {
-        if (object[property] === false) {
-          delete object.property;
-        }
-      }
       Object.keys(object).forEach((key) =>
-        object[key] === undefined ? delete object[key] : {}
+        object[key] === undefined || object[key] === '' || object[key] === false ? delete object[key] : {}
       );
     };
 
@@ -214,6 +209,7 @@ router.post(
 
     List.find({ email: req.user.email })
       .then((list) => {
+        console.log("=============================================")
         if (list) {
           var finalFilter = [];
           listData = list[0].data;
@@ -251,14 +247,14 @@ router.post(
             var start_parts = start_date.split("-");
             var end_parts = end_date.split("-");
             var s_date = new Date(
-              start_parts[2],
+              start_parts[0],
               start_parts[1] - 1,
-              parseInt(start_parts[0])
+              start_parts[2]
             );
             var e_date = new Date(
-              end_parts[2],
+              end_parts[0],
               end_parts[1] - 1,
-              parseInt(end_parts[0])
+              end_parts[2]
             );
 
 
@@ -277,14 +273,18 @@ router.post(
             });
             finalFilter=dateFiltered;
           }else if(!isEmpty(start_date) && isEmpty(end_date) ){
+            console.log("IF ELSE")
             var end_date_local = new Date();
             var end_d = end_date_local.toISOString().substring(0, 10);
             var start_parts = start_date.split("-");
             var end_parts = end_d.split("-");
+
+
+
             var s_date = new Date(
-              start_parts[2],
+              start_parts[0],
               start_parts[1] - 1,
-              start_parts[0]
+              start_parts[2]
             );
             
             var e_date = new Date(
@@ -292,12 +292,15 @@ router.post(
               end_parts[1] - 1,
               end_parts[2]
             );
+
+
+
             const arr = getDates(s_date, e_date);
             const clean_date = arr.map(function (item) {
               return moment(item).format("DD-MM-YYYY");
             });
 
-
+            console.log(clean_date)
             var dateFiltered = [];
             finalFilter.forEach(function (item) {
               clean_date.forEach(function (date_item) {
@@ -307,6 +310,7 @@ router.post(
               });
             });
             finalFilter=dateFiltered;
+            console.log(finalFilter)
           }
           console.log("DATE")
           

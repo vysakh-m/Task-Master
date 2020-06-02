@@ -20,7 +20,10 @@ import { deleteTask } from "../../actions/listActions";
           </div>
           <ul className="list-group list-group-flush">
             <li className="list-group-item" style={{textAlign: "center"}}>
-              <i>Due date : {this.props.date} </i> 
+              <i>Date : {this.props.date} </i> 
+            </li>
+            <li className="list-group-item" style={{textAlign: "center"}}>
+              <i>Time : {this.props.time} </i> 
             </li>
             <li className="list-group-item">
               <div className="tag_style">

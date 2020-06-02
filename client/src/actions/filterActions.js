@@ -1,7 +1,13 @@
 import axios from 'axios'
-import {SELECT_FILTER} from './types'
-export const selectFilter=()=>{
-  return{
-    type:SELECT_FILTER
-  }
+import {LIST_TASK} from './types'
+import {listLoading} from './listActions'
+export const applyFilter=(data)=>dispatch=>{
+  dispatch(listLoading());
+  axios.post('/list/filter',data)
+  .then(payload=>{
+    dispatch({
+      type:LIST_TASK,
+      payload
+    })
+  })
 }

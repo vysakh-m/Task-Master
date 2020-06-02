@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import isEmpty from '../../validation/is-empty'
+import {applyFilter} from '../../actions/filterActions'
 
 class Filterbox extends Component {
   constructor(props) {
@@ -51,6 +52,8 @@ class Filterbox extends Component {
       end_time: this.state.end_time,
     }
     console.log(filterData)
+    console.log(this.props)
+    this.props.applyFilter(filterData);
   }
   render() {
     return (
@@ -160,4 +163,4 @@ class Filterbox extends Component {
   }
 }
 
-export default connect(null)(Filterbox);
+export default connect(null,{applyFilter})(Filterbox);
