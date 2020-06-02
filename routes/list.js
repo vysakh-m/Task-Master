@@ -134,6 +134,8 @@ router.post(
   "/filter",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+
+ 
     //labels
     const label_object = {
       Personal: req.body.personal,
@@ -209,7 +211,6 @@ router.post(
 
     List.find({ email: req.user.email })
       .then((list) => {
-        console.log("=============================================")
         if (list) {
           var finalFilter = [];
           listData = list[0].data;
@@ -220,6 +221,21 @@ router.post(
           console.log("INITIAL")
 
           console.log(finalFilter.length)
+
+          //if from archive route
+          console.log(req.body.from)
+          console.log(finalFilter)
+
+          if(req.body.from==="archive"){
+            finalFilter=finalFilter.filter(function(item){
+              return item.status==="Completed"
+            })
+          }else{
+            finalFilter=finalFilter.filter(function(item){
+              return item.status!=="Completed"
+            })
+          }
+          console.log(finalFilter)
 
 
           if (isAllKeyFalse(label_object)!=undefined ) {
@@ -348,13 +364,13 @@ router.post(
   
 
 router.post(
-  "/archive",
+  "/archive/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     List.findOne({ email: req.user.email }).then((list) => {
       if (list) {
         for (var i = 0; i < list.data.length; i++) {
-          if (list.data[i]._id == req.body.id) {
+          if (list.data[i]._id == req.params.id) {
             list.data[i].status = "Completed";
           }
         }

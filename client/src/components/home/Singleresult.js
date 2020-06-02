@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { deleteTask } from "../../actions/listActions";
+import { moveToArchive } from "../../actions/listActions";
 
  class Singleresult extends Component {
    constructor(props){
      super(props);
      this.onclickDelete=this.onclickDelete.bind(this);
+     this.onclickArchive=this.onclickArchive.bind(this);
    }
 
    onclickDelete(){
-    this.props.deleteTask(this.props.id)
+    this.props.deleteTask(this.props.id,this.props.from)
+   }
+   onclickArchive(){
+    this.props.moveToArchive(this.props.id,this.props.from)
    }
   render() {
     let style={}
@@ -41,6 +46,15 @@ import { deleteTask } from "../../actions/listActions";
     }
 
 
+    let content;
+    if(this.props.from==="archive"){
+      content=""
+    }else{
+      content=(
+        <button onClick={this.onclickArchive} className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</button>
+      )
+    }
+
     return (
       <div className="flex-child shadow-lg p-3 mb-5 bg-white rounded">
         <div className="card" style={{width: "18rem"}}>
@@ -65,7 +79,7 @@ import { deleteTask } from "../../actions/listActions";
           <div className="card-body">
             <button className=" btn btn-dark card-link">Edit Task</button>
             <button onClick={this.onclickDelete} className=" btn btn-dark card-link">Delete</button>
-            <button className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</button>
+            {content}
           </div>
         </div>
       </div>
@@ -74,4 +88,4 @@ import { deleteTask } from "../../actions/listActions";
 }
 
 
-export default connect(null,{deleteTask})(Singleresult)
+export default connect(null,{deleteTask,moveToArchive})(Singleresult)

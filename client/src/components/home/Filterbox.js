@@ -18,6 +18,7 @@ class Filterbox extends Component {
       end_date: '',
       start_time: '',
       end_time: '',
+      from:''
     };
     this.onChange = this.onChange.bind(this);
     this.onChangeCheck = this.onChangeCheck.bind(this);
@@ -51,6 +52,7 @@ class Filterbox extends Component {
       end_date: this.state.end_date,
       start_time: this.state.start_time,
       end_time: this.state.end_time,
+      from:this.props.from
     }
     console.log(filterData)
     console.log(this.props)
@@ -157,7 +159,7 @@ class Filterbox extends Component {
               <div className="flex-child text-center">
               
 
-                <button type="submit" className="btn btn-primary btn-cs">
+                <button type="submit" className="btn btn-success btn-cs">
                 <i className="fas fa-filter"></i> Apply Filters
                 </button>
               </div>

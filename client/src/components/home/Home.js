@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
       <Addtask/>
       <HomeHeader/>
 
-      <Results/>
+      <Results from="home"/>
       </div>
       
     )

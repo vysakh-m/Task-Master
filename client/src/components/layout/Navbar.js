@@ -22,9 +22,9 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link nav_spac" href="#">
+              <Link className="nav-link nav_spac" to='/archive'>
                 Archived Tasks
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link nav_spac" to="/color">

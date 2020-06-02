@@ -6,9 +6,16 @@ import Spinner from "../common/Spinner";
 
 class Results extends Component {
   componentDidMount() {
-    this.props.getList();
+    if(this.props.from==="archive"){
+      this.props.getList("archive");
+    }else if(this.props.from==="home"){
+      this.props.getList("home");
+
+    }
+    
   }
   render() {
+    console.log(this.props.from)
     let dashboardContent;
     const { loading, listData } = this.props.list;
     //listData.data was very helpful since without it else condition
@@ -29,6 +36,7 @@ class Results extends Component {
             date={list.date}
             time={list.time}
             id={list._id}
+            from={this.props.from}
           />
         ));
       } else {

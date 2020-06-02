@@ -25,13 +25,11 @@ class HomeHeader extends Component {
   }
 
   render() {
-    console.log(this.props.filter)
     let content;
-    console.log(this.state)
     if (this.state.select) {
-      content = <Filterbox />;
-    } else {
       content = "";
+    } else {
+      content = "none";
     }
     return (
       <div>
@@ -49,8 +47,12 @@ class HomeHeader extends Component {
               <i className="fas fa-filter"></i> Add Filters
             </button>
           </div>
+          <hr/>
         </div>
-        {content}
+        <div style={{display:`${content}`}}>
+        <Filterbox from="home" />
+        </div>
+        
       </div>
     );
   }

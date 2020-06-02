@@ -15,6 +15,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Home from "./components/home/Home";
 import Colorchart from "./components/color-chart/Colorchart";
+import Archive from "./components/archive/Archive";
 
 
 // Check for token
@@ -46,6 +47,9 @@ export default class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path='/color' component={Colorchart}/>
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path='/archive' component={Archive}/>
           </Switch>
           <Footer />
         </div>
