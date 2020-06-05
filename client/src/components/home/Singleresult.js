@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { deleteTask } from "../../actions/listActions";
-import { moveToArchive } from "../../actions/listActions";
+import { deleteTask, moveToArchive } from "../../actions/listActions";
+import { editModal } from "../../actions/modalActions";
 
  class Singleresult extends Component {
    constructor(props){
      super(props);
      this.onclickDelete=this.onclickDelete.bind(this);
      this.onclickArchive=this.onclickArchive.bind(this);
+     this.onClickEdit=this.onClickEdit.bind(this);
    }
 
    onclickDelete(){
@@ -15,6 +16,19 @@ import { moveToArchive } from "../../actions/listActions";
    }
    onclickArchive(){
     this.props.moveToArchive(this.props.id,this.props.from)
+   }
+   onClickEdit(){
+     const currentData={
+      date: this.props.date,
+      from: this.props.from,
+      id: this.props.id,
+      label: this.props.label,
+      name: this.props.name,
+      priority: this.props.priority,
+      status: this.props.status,
+      time: this.props.time
+     }
+    this.props.editModal(currentData)
    }
   render() {
     let style={}
@@ -46,12 +60,17 @@ import { moveToArchive } from "../../actions/listActions";
     }
 
 
-    let content;
+    let deleteContent;
+    let editContent;
     if(this.props.from==="archive"){
-      content=""
+      deleteContent="";
+      editContent="";
     }else{
-      content=(
+      deleteContent=(
         <button onClick={this.onclickArchive} className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</button>
+      );
+      editContent=(
+        <button onClick={this.onClickEdit} className=" btn btn-dark card-link">Edit Task</button>
       )
     }
 
@@ -77,9 +96,9 @@ import { moveToArchive } from "../../actions/listActions";
             </li>
           </ul>
           <div className="card-body">
-            <button className=" btn btn-dark card-link">Edit Task</button>
+            {editContent}
             <button onClick={this.onclickDelete} className=" btn btn-dark card-link">Delete</button>
-            {content}
+            {deleteContent}
           </div>
         </div>
       </div>
@@ -88,4 +107,4 @@ import { moveToArchive } from "../../actions/listActions";
 }
 
 
-export default connect(null,{deleteTask,moveToArchive})(Singleresult)
+export default connect(null,{deleteTask,moveToArchive,editModal})(Singleresult)

@@ -29,12 +29,9 @@ module.exports = function validateTaskRegistration(data) {
   data.label = !isEmpty(data.label) ? data.label : '';
   data.status = !isEmpty(data.status) ? data.status : '';
   data.priority = !isEmpty(data.priority) ? data.priority : '';
-  date_clone = !isEmpty(date_clone) ?(
-    date_clone=date_clone.slice(8,10) + '-' + date_clone.slice(5,7) + '-' + date_clone.slice(0,4)
-  ): '';
+  data.date = !isEmpty(data.date) ? data.date : '';
   data.time = !isEmpty(data.time) ? data.time : '';
-  data.date=date_clone;
-  date_clone1=date_clone1.slice(8,10) + '/' + date_clone1.slice(5,7) + '/' + date_clone1.slice(0,4)
+
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Required';
   }
@@ -49,7 +46,7 @@ module.exports = function validateTaskRegistration(data) {
     errors.priority = 'Priority field is required';
   }
 
-  if (Validator.isEmpty(date_clone)) {
+  if (Validator.isEmpty(data.date)) {
     errors.date = 'Date field is required';
   }
 

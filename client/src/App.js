@@ -16,6 +16,7 @@ import Register from "./components/register/Register";
 import Home from "./components/home/Home";
 import Colorchart from "./components/color-chart/Colorchart";
 import Archive from "./components/archive/Archive";
+import Editmodal from "./components/Editmodal";
 
 
 // Check for token
@@ -50,6 +51,9 @@ export default class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path='/archive' component={Archive}/>
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path='/edit' component={Editmodal}/>
           </Switch>
           <Footer />
         </div>

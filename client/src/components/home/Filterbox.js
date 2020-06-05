@@ -167,7 +167,7 @@ class Filterbox extends Component {
 
                 <button type="button"
                   className="btn btn-danger btn-cs" onClick={this.onClick}>
-                    <i class="fas fa-times-circle"></i> Close
+                    <i className="fas fa-times-circle"></i> Close
                 </button>
               </div>
             </div>

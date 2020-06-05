@@ -95,6 +95,10 @@ router.post(
   "/edit",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    const { errors, isValid } = validateTaskRegistration(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const newData = {
       name: req.body.name,
       label: req.body.label,
@@ -121,6 +125,7 @@ router.post(
             }
           }
         );
+
         return res.json(list.data);
       } else {
         return res.json({
