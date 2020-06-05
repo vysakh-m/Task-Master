@@ -6,16 +6,14 @@ import Spinner from "../common/Spinner";
 
 class Results extends Component {
   componentDidMount() {
-    if(this.props.from==="archive"){
+    if (this.props.from === "archive") {
       this.props.getList("archive");
-    }else if(this.props.from==="home"){
+    } else if (this.props.from === "home") {
       this.props.getList("home");
-
     }
-    
   }
   render() {
-    console.log(this.props.from)
+    console.log(this.props.from);
     let dashboardContent;
     const { loading, listData } = this.props.list;
     //listData.data was very helpful since without it else condition

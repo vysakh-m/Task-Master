@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { deleteTask, moveToArchive } from "../../actions/listActions";
 import { editModal } from "../../actions/modalActions";
 
- class Singleresult extends Component {
-   constructor(props){
-     super(props);
-     this.onclickDelete=this.onclickDelete.bind(this);
-     this.onclickArchive=this.onclickArchive.bind(this);
-     this.onClickEdit=this.onClickEdit.bind(this);
-   }
+class Singleresult extends Component {
+  constructor(props) {
+    super(props);
+    this.onclickDelete = this.onclickDelete.bind(this);
+    this.onclickArchive = this.onclickArchive.bind(this);
+    this.onClickEdit = this.onClickEdit.bind(this);
+  }
 
-   onclickDelete(){
-    this.props.deleteTask(this.props.id,this.props.from)
-   }
-   onclickArchive(){
-    this.props.moveToArchive(this.props.id,this.props.from)
-   }
-   onClickEdit(){
-     const currentData={
+  onclickDelete() {
+    this.props.deleteTask(this.props.id, this.props.from);
+  }
+  onclickArchive() {
+    this.props.moveToArchive(this.props.id, this.props.from);
+  }
+  onClickEdit() {
+    const currentData = {
       date: this.props.date,
       from: this.props.from,
       id: this.props.id,
@@ -26,85 +26,100 @@ import { editModal } from "../../actions/modalActions";
       name: this.props.name,
       priority: this.props.priority,
       status: this.props.status,
-      time: this.props.time
-     }
-    this.props.editModal(currentData)
-   }
+      time: this.props.time,
+    };
+    this.props.editModal(currentData);
+  }
   render() {
-    let style={}
-    if(this.props.label==="Personal"){
-      style.label="l_personal"
-    }else if(this.props.label==="Work"){
-      style.label="l_work"
-    }else if(this.props.label==="Shopping"){
-      style.label="l_shopping"
-    }else if(this.props.label==="Others"){
-      style.label="l_others"
+    let style = {};
+    if (this.props.label === "Personal") {
+      style.label = "l_personal";
+    } else if (this.props.label === "Work") {
+      style.label = "l_work";
+    } else if (this.props.label === "Shopping") {
+      style.label = "l_shopping";
+    } else if (this.props.label === "Others") {
+      style.label = "l_others";
     }
 
-    if(this.props.status==="New"){
-      style.status="s_new"
-    }else if(this.props.status==="Progress"){
-      style.status="s_progress"
-    }else if(this.props.status==="Completed"){
-      style.status="s_complete"
+    if (this.props.status === "New") {
+      style.status = "s_new";
+    } else if (this.props.status === "Progress") {
+      style.status = "s_progress";
+    } else if (this.props.status === "Completed") {
+      style.status = "s_complete";
     }
 
-
-    if(this.props.priority==="High"){
-      style.priority="p_h"
-    }else if(this.props.priority==="Medium"){
-      style.priority="p_m"
-    }else if(this.props.priority==="Low"){
-      style.priority="p_l"
+    if (this.props.priority === "High") {
+      style.priority = "p_h";
+    } else if (this.props.priority === "Medium") {
+      style.priority = "p_m";
+    } else if (this.props.priority === "Low") {
+      style.priority = "p_l";
     }
-
 
     let deleteContent;
     let editContent;
-    if(this.props.from==="archive"){
-      deleteContent="";
-      editContent="";
-    }else{
-      deleteContent=(
-        <button onClick={this.onclickArchive} className=" btn btn-dark card-link mt-2 mr-2">Mark as complete</button>
+    if (this.props.from === "archive") {
+      deleteContent = "";
+      editContent = "";
+    } else {
+      deleteContent = (
+        <button
+          onClick={this.onclickArchive}
+          className=" btn btn-dark card-link mt-2 mr-2"
+        >
+          Mark as complete
+        </button>
       );
-      editContent=(
-        <button onClick={this.onClickEdit} className=" btn btn-dark card-link">Edit Task</button>
-      )
+      editContent = (
+        <button onClick={this.onClickEdit} className=" btn btn-dark card-link">
+          Edit Task
+        </button>
+      );
     }
 
     return (
       <div className="flex-child shadow-lg p-3 mb-5 bg-white rounded">
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{ width: "18rem" }}>
           <div className="card-body">
-            <h5 className="card-title"><strong>{this.props.name}</strong></h5>
+            <h5 className="card-title">
+              <strong>{this.props.name}</strong>
+            </h5>
           </div>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item" style={{textAlign: "center"}}>
-              <i>Date : {this.props.date} </i> 
+            <li className="list-group-item" style={{ textAlign: "center" }}>
+              <i>Date : {this.props.date} </i>
             </li>
-            <li className="list-group-item" style={{textAlign: "center"}}>
-              <i>Time : {this.props.time} </i> 
+            <li className="list-group-item" style={{ textAlign: "center" }}>
+              <i>Time : {this.props.time} </i>
             </li>
             <li className="list-group-item">
               <div className="tag_style">
-                <p className={`card_p  ${style.label}` }>{this.props.label}</p>
+                <p className={`card_p  ${style.label}`}>{this.props.label}</p>
                 <p className={`card_p ${style.status}`}>{this.props.status}</p>
-                <p className={`card_p  ${style.priority}`}>{this.props.priority}</p>
-              </div>           
+                <p className={`card_p  ${style.priority}`}>
+                  {this.props.priority}
+                </p>
+              </div>
             </li>
           </ul>
           <div className="card-body">
             {editContent}
-            <button onClick={this.onclickDelete} className=" btn btn-dark card-link">Delete</button>
+            <button
+              onClick={this.onclickDelete}
+              className=" btn btn-dark card-link"
+            >
+              Delete
+            </button>
             {deleteContent}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-
-export default connect(null,{deleteTask,moveToArchive,editModal})(Singleresult)
+export default connect(null, { deleteTask, moveToArchive, editModal })(
+  Singleresult
+);

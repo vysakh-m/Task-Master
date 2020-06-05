@@ -4,7 +4,7 @@ import { LIST_LOADING, LIST_TASK, GET_ERRORS } from "./types";
 export const getList = (from) => (dispatch) => {
   dispatch(listLoading());
   if (from === "home") {
-    console.log("ACTION HOME")
+    console.log("ACTION HOME");
     axios.get("/list/view").then((payload) => {
       dispatch({
         type: LIST_TASK,
@@ -39,7 +39,7 @@ export const addTaskData = (taskData) => (dispatch) => {
     );
 };
 
-export const deleteTask = (id,from) => (dispatch) => {
+export const deleteTask = (id, from) => (dispatch) => {
   axios
     .delete(`/list/delete/${id}`)
     .then((data) => dispatch(getList(from)))
@@ -51,14 +51,14 @@ export const deleteTask = (id,from) => (dispatch) => {
     );
 };
 
-export const moveToArchive=(id,from)=>(dispatch)=>{
-  axios.post(`/list/archive/${id}`)
-  .then((data)=> dispatch(getList(from)))
-  .catch((err) =>
+export const moveToArchive = (id, from) => (dispatch) => {
+  axios
+    .post(`/list/archive/${id}`)
+    .then((data) => dispatch(getList(from)))
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
       })
     );
-}
-
+};

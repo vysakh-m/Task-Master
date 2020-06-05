@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { selectFilter } from "../../actions/filterActions";
 import Filterbox from "./Filterbox";
 
@@ -7,7 +7,7 @@ class HomeHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      select:false
+      select: false,
     };
     this.onClick = this.onClick.bind(this);
   }
@@ -18,9 +18,9 @@ class HomeHeader extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter) {
-      console.log(nextProps.filter)
+      console.log(nextProps.filter);
       this.setState({ select: nextProps.filter.select });
-      console.log(this.state)
+      console.log(this.state);
     }
   }
 
@@ -47,18 +47,17 @@ class HomeHeader extends Component {
               <i className="fas fa-filter"></i> Add Filters
             </button>
           </div>
-          <hr/>
+          <hr />
         </div>
-        <div style={{display:`${content}`}}>
-        <Filterbox from="home" />
+        <div style={{ display: `${content}` }}>
+          <Filterbox from="home" />
         </div>
-        
       </div>
     );
   }
 }
-const mapStateToProps=(state)=>({
-  filter:state.filter
+const mapStateToProps = (state) => ({
+  filter: state.filter,
 });
 
-export default connect(mapStateToProps,{selectFilter})(HomeHeader)
+export default connect(mapStateToProps, { selectFilter })(HomeHeader);

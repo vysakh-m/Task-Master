@@ -1,25 +1,25 @@
-.custom_spacing{
+.custom_spacing {
   margin-top: 8px;
 }
 
-.select_custom{
+.select_custom {
   margin-left: 10px;
 }
 
-.centering{
+.centering {
   text-align: center;
 }
-.form-inline{
+.form-inline {
   display: block;
 }
 
-.tag_style{
+.tag_style {
   display: flex;
 }
-.card-body{
+.card-body {
   text-align: center;
 }
-.card_p{
+.card_p {
   text-align: center;
   margin-bottom: 0;
   flex: 1;
@@ -27,81 +27,71 @@
   padding: 3px;
   border: 1px solid #fff;
   border-radius: 7px;
-  color:white
+  color: white;
 }
-.l_personal{
-  background-color: #182C25;
-  
+.l_personal {
+  background-color: #182c25;
 }
-.l_work{
-  background-color:#0F66DA;
+.l_work {
+  background-color: #0f66da;
 }
-.l_shopping{
-  background-color:#D3514D;
+.l_shopping {
+  background-color: #d3514d;
 }
-.l_others{
-  background-color: #563D7C;
-}
-
-.s_new{
-  background-color: #009587
-}
-.s_progress{
-  background-color:#FF9700
+.l_others {
+  background-color: #563d7c;
 }
 
-.s_complete{
+.s_new {
+  background-color: #009587;
+}
+.s_progress {
+  background-color: #ff9700;
+}
+
+.s_complete {
   background-color: #364528;
 }
 
-.p_h{
-  background-color:#AA0000
+.p_h {
+  background-color: #aa0000;
 }
-.p_m{
-  background-color:#AA8000
+.p_m {
+  background-color: #aa8000;
 }
-.p_l{
-  background-color:#008900
+.p_l {
+  background-color: #008900;
 }
 
-
-
-.flexing{
+.flexing {
   width: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.flex-child{
+.flex-child {
   margin: 4px 4px;
-
-
 }
 
-.bt-bg{
+.bt-bg {
   background-color: black;
   color: #fff;
 }
-.bt-bg:hover{
+.bt-bg:hover {
   background-color: #343a40;
   color: #fff;
 }
 
-
 @media only screen and (max-width: 575px) {
-  .select_custom{
+  .select_custom {
     margin-left: 0px;
     margin-top: 10px;
   }
-
 }
-
-
 
 /*=============checkbox=============*/
 
-/* The container */
 .container-checkbox {
   display: block;
   position: relative;
@@ -115,14 +105,12 @@
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
 .container-checkbox input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-/* Create a custom checkbox */
 .container-checkbox .checkmark {
   position: absolute;
   top: 0;
@@ -132,29 +120,24 @@
   background-color: #eee;
 }
 
-/* On mouse-over, add a grey background color */
 .container-checkbox:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-/* When the checkbox is checked, add a blue background */
 .container-checkbox input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .container-checkbox .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .container-checkbox input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .container-checkbox .checkmark:after {
   left: 9px;
   top: 7px;
@@ -167,55 +150,46 @@
   transform: rotate(45deg);
 }
 
-
 /*end of checkbox*/
 
-
-
-
-.date-range{
+.date-range {
   display: block;
 }
-.btn-cs{
+.btn-cs {
   position: relative;
   top: 40%;
 }
 
-.flex-child h5{
+.flex-child h5 {
   text-align: center;
 }
 
-.flex-child label{
+.flex-child label {
   font-size: 13px;
 }
 
-
 @media only screen and (min-width: 1000px) {
-  .filter_flex{
+  .filter_flex {
     display: flex;
     justify-content: center;
   }
-  .flex-child{
+  .flex-child {
     margin-left: 40px;
   }
-  .flex-child label{
+  .flex-child label {
     font-size: 15px;
   }
-  
-
 }
 
-.time{
+.time {
   height: 40px;
   margin-top: 20px;
 }
-.time-error{
-  border:1px solid red;
+.time-error {
+  border: 1px solid red;
 }
 
-.time-range{
+.time-range {
   position: relative;
-  left:40%
+  left: 40%;
 }
-
-

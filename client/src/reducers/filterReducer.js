@@ -1,24 +1,23 @@
-import { SELECT_FILTER,EXIT_FILTER } from "../actions/types";
-
+import { SELECT_FILTER, EXIT_FILTER } from "../actions/types";
 
 const initialState = {
   select: false,
-  confirm:false,
-  data: {}
+  confirm: false,
+  data: {},
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case SELECT_FILTER:
-      return{
+      return {
         ...state,
-        select:true
-      }
+        select: true,
+      };
     case EXIT_FILTER:
-      return{
+      return {
         ...state,
-        select:false
-      }
+        select: false,
+      };
     default:
       return state;
   }

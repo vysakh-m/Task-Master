@@ -2,7 +2,7 @@ import { LIST_LOADING, LIST_TASK, EDIT_DATA } from "../actions/types";
 
 const initialState = {
   loading: false,
-  listData: []
+  listData: [],
 };
 
 export default function (state = initialState, action) {
@@ -13,11 +13,11 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case LIST_TASK:
-      return{
+      return {
         ...state,
-        loading:false,
-        listData:action.payload
-      }
+        loading: false,
+        listData: action.payload,
+      };
     default:
       return state;
   }

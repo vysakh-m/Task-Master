@@ -1,6 +1,6 @@
 import axios from "axios";
-import { EDIT_DATA,GET_ERRORS,EDIT_CONFIRM,CLOSE_MODEL } from "./types";
-import {getList} from './listActions'
+import { EDIT_DATA, GET_ERRORS, EDIT_CONFIRM, CLOSE_MODEL } from "./types";
+import { getList } from "./listActions";
 
 export const editModal = (data) => (dispatch) => {
   dispatch({
@@ -10,16 +10,15 @@ export const editModal = (data) => (dispatch) => {
 };
 
 export const editSubmit = (taskData) => (dispatch) => {
-  console.log(taskData)
+  console.log(taskData);
   axios
     .post("/list/edit", taskData)
-    .then((data) =>{
+    .then((data) => {
       dispatch({
-        type:EDIT_CONFIRM
-      })
-      dispatch(getList("home"))
-
-    } )
+        type: EDIT_CONFIRM,
+      });
+      dispatch(getList("home"));
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -28,9 +27,9 @@ export const editSubmit = (taskData) => (dispatch) => {
     );
 };
 
-export const closeModel=()=>(dispatch)=>{
+export const closeModel = () => (dispatch) => {
   dispatch({
     type: CLOSE_MODEL,
     payload: {},
-  })
-}
+  });
+};

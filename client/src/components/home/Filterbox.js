@@ -1,31 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import isEmpty from '../../validation/is-empty'
-import {applyFilter,exitFilter} from '../../actions/filterActions'
+import isEmpty from "../../validation/is-empty";
+import { applyFilter, exitFilter } from "../../actions/filterActions";
 
 class Filterbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      personal:'',
-      work:'',
-      shopping:'',
-      others:'',
-      high:'',
-      medium:'',
-      low:'',
-      start_date: '',
-      end_date: '',
-      start_time: '',
-      end_time: '',
-      from:''
+      personal: "",
+      work: "",
+      shopping: "",
+      others: "",
+      high: "",
+      medium: "",
+      low: "",
+      start_date: "",
+      end_date: "",
+      start_time: "",
+      end_time: "",
+      from: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onChangeCheck = this.onChangeCheck.bind(this);
-    this.onSubmit=this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
-
-  } 
+  }
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -38,9 +37,9 @@ class Filterbox extends Component {
     });
   }
 
-  onSubmit(e){
+  onSubmit(e) {
     e.preventDefault();
-    const filterData={
+    const filterData = {
       personal: this.state.personal,
       work: this.state.work,
       shopping: this.state.shopping,
@@ -52,15 +51,15 @@ class Filterbox extends Component {
       end_date: this.state.end_date,
       start_time: this.state.start_time,
       end_time: this.state.end_time,
-      from:this.props.from
-    }
-    console.log(filterData)
-    console.log(this.props)
+      from: this.props.from,
+    };
+    console.log(filterData);
+    console.log(this.props);
     this.props.applyFilter(filterData);
   }
 
-  onClick(){
-    this.props.exitFilter()
+  onClick() {
+    this.props.exitFilter();
   }
 
   render() {
@@ -73,22 +72,38 @@ class Filterbox extends Component {
                 <h5>Label</h5>
                 <label className="container-checkbox">
                   Personal
-                  <input onChange={this.onChangeCheck} name="personal" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="personal"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="container-checkbox">
                   Work
-                  <input onChange={this.onChangeCheck} name="work" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="work"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="container-checkbox">
                   Shopping
-                  <input onChange={this.onChangeCheck} name="shopping" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="shopping"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="container-checkbox">
                   Others
-                  <input onChange={this.onChangeCheck} name="others" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="others"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
               </div>
@@ -97,31 +112,41 @@ class Filterbox extends Component {
                 <h5>Priority</h5>
                 <label className="container-checkbox">
                   High
-                  <input onChange={this.onChangeCheck} name="high" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="high"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="container-checkbox">
                   Medium
-                  <input onChange={this.onChangeCheck} name="medium" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="medium"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="container-checkbox">
                   Low
-                  <input onChange={this.onChangeCheck} name="low" type="checkbox" />
+                  <input
+                    onChange={this.onChangeCheck}
+                    name="low"
+                    type="checkbox"
+                  />
                   <span className="checkmark"></span>
                 </label>
               </div>
               <div className="flex-child ml-3 date-range">
                 <h5>Date Range</h5>
                 <input
-                
                   onChange={this.onChange}
                   value={this.state.start_date}
                   className="form-control select_custom"
                   name="start_date"
                   placeholder="DD-MM-YYYY"
                   type="date"
-                  
                 />
                 <br />
                 <input
@@ -137,7 +162,7 @@ class Filterbox extends Component {
                 <h5>Time Range</h5>
                 <div className="time-range">
                   <div>
-                    <input         
+                    <input
                       onChange={this.onChange}
                       type="time"
                       className=" mt-1"
@@ -157,17 +182,17 @@ class Filterbox extends Component {
                 </div>
               </div>
               <div className="flex-child text-center">
-              
-
                 <button type="submit" className="btn btn-success btn-cs">
-                <i className="fas fa-filter"></i> Apply Filters
+                  <i className="fas fa-filter"></i> Apply Filters
                 </button>
               </div>
               <div className="flex-child text-center">
-
-                <button type="button"
-                  className="btn btn-danger btn-cs" onClick={this.onClick}>
-                    <i className="fas fa-times-circle"></i> Close
+                <button
+                  type="button"
+                  className="btn btn-danger btn-cs"
+                  onClick={this.onClick}
+                >
+                  <i className="fas fa-times-circle"></i> Close
                 </button>
               </div>
             </div>
@@ -178,4 +203,4 @@ class Filterbox extends Component {
   }
 }
 
-export default connect(null,{applyFilter,exitFilter})(Filterbox);
+export default connect(null, { applyFilter, exitFilter })(Filterbox);

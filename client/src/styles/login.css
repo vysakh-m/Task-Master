@@ -1,27 +1,26 @@
-.log-box{
+.log-box {
   width: 35%;
   height: 350px;
   margin: 0 auto;
   text-align: center;
-
 }
-.input-txt{
+.input-txt {
   width: 90%;
   margin: 0 auto;
 }
-.mrg-val{
+.mrg-val {
   margin-left: 40px;
 }
-.cst-pos{
+.cst-pos {
   position: absolute;
   top: 10px;
   left: 20px;
 }
 @media only screen and (max-width: 840px) {
-  .log-box{
+  .log-box {
     width: 80%;
   }
-  .mrg-val{
+  .mrg-val {
     margin-left: 10px;
   }
 }

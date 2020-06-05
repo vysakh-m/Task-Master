@@ -139,8 +139,6 @@ router.post(
   "/filter",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-
- 
     //labels
     const label_object = {
       Personal: req.body.personal,
@@ -158,13 +156,14 @@ router.post(
 
     const removeFalseElements = (object) => {
       Object.keys(object).forEach((key) =>
-        object[key] === undefined || object[key] === '' || object[key] === false ? delete object[key] : {}
+        object[key] === undefined || object[key] === "" || object[key] === false
+          ? delete object[key]
+          : {}
       );
     };
 
     removeFalseElements(label_object);
     removeFalseElements(priority_object);
-
 
     //date
     const start_date = req.body.start_date;
@@ -175,9 +174,6 @@ router.post(
 
     //filter arrays
 
-
-
-
     function isLabelPresent(item) {
       return item.label in label_object;
     }
@@ -185,7 +181,6 @@ router.post(
     function isPriorityPresent(item) {
       return item.priority in priority_object;
     }
-
 
     Date.prototype.addDays = function (days) {
       var date = new Date(this.valueOf());
@@ -222,49 +217,43 @@ router.post(
 
           finalFilter = listData;
 
+          console.log("INITIAL");
 
-          console.log("INITIAL")
-
-          console.log(finalFilter.length)
+          console.log(finalFilter.length);
 
           //if from archive route
-          console.log(req.body.from)
-          console.log(finalFilter)
+          console.log(req.body.from);
+          console.log(finalFilter);
 
-          if(req.body.from==="archive"){
-            finalFilter=finalFilter.filter(function(item){
-              return item.status==="Completed"
-            })
-          }else{
-            finalFilter=finalFilter.filter(function(item){
-              return item.status!=="Completed"
-            })
+          if (req.body.from === "archive") {
+            finalFilter = finalFilter.filter(function (item) {
+              return item.status === "Completed";
+            });
+          } else {
+            finalFilter = finalFilter.filter(function (item) {
+              return item.status !== "Completed";
+            });
           }
-          console.log(finalFilter)
+          console.log(finalFilter);
 
-
-          if (isAllKeyFalse(label_object)!=undefined ) {
+          if (isAllKeyFalse(label_object) != undefined) {
             finalFilter = finalFilter.filter(isLabelPresent);
           }
 
-          console.log("LABEL")
-          console.log(finalFilter.length)
+          console.log("LABEL");
+          console.log(finalFilter.length);
 
-          if (isAllKeyFalse(priority_object)!=undefined) {
+          if (isAllKeyFalse(priority_object) != undefined) {
             finalFilter = finalFilter.filter(isPriorityPresent);
           }
 
-          console.log("PRIORITY")
+          console.log("PRIORITY");
 
-          console.log(finalFilter.length)
-
-
+          console.log(finalFilter.length);
 
           //date filter not empty condition
 
-
           if (!isEmpty(start_date) && !isEmpty(end_date)) {
-
             var start_parts = start_date.split("-");
             var end_parts = end_date.split("-");
             var s_date = new Date(
@@ -272,12 +261,7 @@ router.post(
               start_parts[1] - 1,
               start_parts[2]
             );
-            var e_date = new Date(
-              end_parts[0],
-              end_parts[1] - 1,
-              end_parts[2]
-            );
-
+            var e_date = new Date(end_parts[0], end_parts[1] - 1, end_parts[2]);
 
             const arr = getDates(s_date, e_date);
             const clean_date = arr.map(function (item) {
@@ -292,36 +276,28 @@ router.post(
                 }
               });
             });
-            finalFilter=dateFiltered;
-          }else if(!isEmpty(start_date) && isEmpty(end_date) ){
-            console.log("IF ELSE")
+            finalFilter = dateFiltered;
+          } else if (!isEmpty(start_date) && isEmpty(end_date)) {
+            console.log("IF ELSE");
             var end_date_local = new Date();
             var end_d = end_date_local.toISOString().substring(0, 10);
             var start_parts = start_date.split("-");
             var end_parts = end_d.split("-");
-
-
 
             var s_date = new Date(
               start_parts[0],
               start_parts[1] - 1,
               start_parts[2]
             );
-            
-            var e_date = new Date(
-              end_parts[0],
-              end_parts[1] - 1,
-              end_parts[2]
-            );
 
-
+            var e_date = new Date(end_parts[0], end_parts[1] - 1, end_parts[2]);
 
             const arr = getDates(s_date, e_date);
             const clean_date = arr.map(function (item) {
               return moment(item).format("DD-MM-YYYY");
             });
 
-            console.log(clean_date)
+            console.log(clean_date);
             var dateFiltered = [];
             finalFilter.forEach(function (item) {
               clean_date.forEach(function (date_item) {
@@ -330,17 +306,16 @@ router.post(
                 }
               });
             });
-            finalFilter=dateFiltered;
-            console.log(finalFilter)
+            finalFilter = dateFiltered;
+            console.log(finalFilter);
           }
-          console.log("DATE")
-          
-          console.log(finalFilter.length)
+          console.log("DATE");
+
+          console.log(finalFilter.length);
 
           //time filtering
 
-
-          if (!isEmpty(start_time) && !isEmpty(end_time)){
+          if (!isEmpty(start_time) && !isEmpty(end_time)) {
             const format = "hh:mm";
             const beforeTime = moment(start_time, format);
             const afterTime = moment(end_time, format);
@@ -351,22 +326,19 @@ router.post(
                 timeFiltered.push(item);
               }
             });
-            finalFilter=timeFiltered;
+            finalFilter = timeFiltered;
           }
-          
-          
 
+          console.log("TIME");
 
-          console.log("TIME")
-
-          console.log(finalFilter.length)
-          return res.json(finalFilter)
+          console.log(finalFilter.length);
+          return res.json(finalFilter);
         }
       })
 
       .catch((err) => res.status(400).json({}));
-    }) 
-  
+  }
+);
 
 router.post(
   "/archive/:id",

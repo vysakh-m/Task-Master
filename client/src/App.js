@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser, logoutUser } from './actions/authActions';
-// import { clearCurrentProfile } from './actions/profileActions';
-import PrivateRoute from './components/common/PrivateRoute';
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
 
+//COMPONENTS
+import PrivateRoute from "./components/common/PrivateRoute";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Login from "./components/login/Login";
@@ -17,7 +17,6 @@ import Home from "./components/home/Home";
 import Colorchart from "./components/color-chart/Colorchart";
 import Archive from "./components/archive/Archive";
 import Editmodal from "./components/Editmodal";
-
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -29,8 +28,7 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
-    // store.dispatch(clearCurrentProfile());
-    window.location.href = '/login';
+    window.location.href = "/login";
   }
 }
 
@@ -39,27 +37,26 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-        <div>
-          <Navbar />
-          <Route exact path='/login' component={Login}/>
-          <Route exact path='/register' component={Register}/>
-          <Switch>
-            <PrivateRoute exact path='/home' component={Home}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/color' component={Colorchart}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/archive' component={Archive}/>
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path='/edit' component={Editmodal}/>
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+          <div>
+            <Navbar />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Switch>
+              <PrivateRoute exact path="/home" component={Home} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/color" component={Colorchart} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/archive" component={Archive} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/edit" component={Editmodal} />
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
       </Provider>
-      
     );
   }
 }

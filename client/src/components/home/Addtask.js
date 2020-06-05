@@ -24,13 +24,20 @@ class Addtask extends Component {
     });
   }
   onSubmit(e) {
+    const { date } = this.state;
+    let db_date =
+      date.substring(8) +
+      "-" +
+      date.substring(5, 7) +
+      "-" +
+      date.substring(0, 4);
     e.preventDefault();
     const newTask = {
       name: this.state.name,
       label: this.state.label,
       status: this.state.status,
       priority: this.state.priority,
-      date: this.state.date,
+      date: db_date,
       time: this.state.time,
     };
     this.props.addTaskData(newTask);
@@ -41,7 +48,6 @@ class Addtask extends Component {
       this.setState({ errors: nextProps.errors });
     }
   }
-
 
   render() {
     return (
@@ -64,6 +70,7 @@ class Addtask extends Component {
               id="inlineFormInputName2"
               name="name"
               placeholder="Enter Task"
+              a
             />
 
             <select

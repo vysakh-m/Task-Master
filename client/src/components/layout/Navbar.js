@@ -2,31 +2,70 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import classnames from 'classnames'
 
 import "../../styles/navbar.css";
 
 class Navbar extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      active:"home"
+    }
+    this.onArchiveClick=this.onArchiveClick.bind(this);
+    this.onColorClick=this.onColorClick.bind(this);
+    this.onHomeClick=this.onHomeClick.bind(this);
+  }
 
   onLogoutClick(e){
     e.preventDefault();
     this.props.logoutUser();
+  }
+  onArchiveClick(){
+    this.setState({
+      active:"archive"
+    })
+  }
+  onColorClick(){
+    this.setState({
+      active:"color"
+    })
+  }
+  onHomeClick(){
+    this.setState({
+      active:"home"
+    })
   }
 
   render() {
 
     const authLinks=(
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li className="nav-item active">
+          <li onClick={this.onHomeClick}
+          className={classnames(
+            "nav-item",
+            {
+              "active": this.state.active==="home"
+            })}
+            >
               <Link className="nav-link nav_spac" to="/home">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li onClick={this.onArchiveClick} className={classnames(
+            "nav-item",
+            {
+              "active": this.state.active==="archive"
+            })}>
               <Link className="nav-link nav_spac" to='/archive'>
                 Archived Tasks
               </Link>
             </li>
-            <li className="nav-item">
+            <li onClick={this.onColorClick} className={classnames(
+            "nav-item",
+            {
+              "active": this.state.active==="color"
+            })}>
               <Link className="nav-link nav_spac" to="/color">
                 Color Chart
               </Link>
@@ -69,7 +108,7 @@ class Navbar extends Component {
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <a className="navbar-brand" href="#">
-            Task Manager
+            Task Master
           </a>
           {this.props.auth.isAuthenticated ? authLinks : guestLinks }
         </div>
