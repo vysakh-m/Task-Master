@@ -28,6 +28,6 @@ require("./config/passport")(passport);
 app.use("/user", require("./routes/user"));
 app.use("/list", require("./routes/list"));
 
-app.listen(4000, () => {
+app.listen(process.env.PORT||4000, () => {
   console.log("Listening on port 4000");
 });

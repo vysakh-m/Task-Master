@@ -39,6 +39,9 @@ export default class App extends Component {
         <Router>
           <div>
             <Navbar />
+            <Switch>
+              <PrivateRoute exact path="/" component={Home} />
+            </Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Switch>
