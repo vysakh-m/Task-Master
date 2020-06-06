@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose   = require("mongoose");
 const app        = express();
 const passport   = require("passport");
-
+const path       = require('path');
 //Body-Parser
 app.use(
   bodyParser.urlencoded({
@@ -27,6 +27,16 @@ require("./config/passport")(passport);
 //Importing Routes
 app.use("/user", require("./routes/user"));
 app.use("/list", require("./routes/list"));
+
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(process.env.PORT||4000, () => {
   console.log("Listening on port 4000");
