@@ -18,9 +18,7 @@ class HomeHeader extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter) {
-      console.log(nextProps.filter);
       this.setState({ select: nextProps.filter.select });
-      console.log(this.state);
     }
   }
 

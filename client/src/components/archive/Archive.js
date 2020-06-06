@@ -20,9 +20,7 @@ class Archive extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter) {
-      console.log(nextProps.filter);
       this.setState({ select: nextProps.filter.select });
-      console.log(this.state);
     }
   }
 
@@ -41,12 +39,12 @@ class Archive extends Component {
         <hr />
 
         <div
-          class="container text-center"
+          className="container text-center"
           onClick={this.onClick}
           style={{ marginBottom: "20px" }}
         >
-          <button class="btn btn-warning ">
-            <i class="fas fa-filter"></i> Add Filters
+          <button className="btn btn-warning ">
+            <i className="fas fa-filter"></i> Add Filters
           </button>
         </div>
         <hr />

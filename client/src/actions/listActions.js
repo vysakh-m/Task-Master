@@ -4,7 +4,6 @@ import { LIST_LOADING, LIST_TASK, GET_ERRORS } from "./types";
 export const getList = (from) => (dispatch) => {
   dispatch(listLoading());
   if (from === "home") {
-    console.log("ACTION HOME");
     axios.get("/list/view").then((payload) => {
       dispatch({
         type: LIST_TASK,

@@ -71,7 +71,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item">
-            <a className="nav-link nav_spac" href="" onClick={this.onLogoutClick.bind(this)}>
+            <a className="nav-link nav_spac" href="/#" onClick={this.onLogoutClick.bind(this)}>
               Logout
             </a>
           </li>
@@ -81,7 +81,7 @@ class Navbar extends Component {
     const guestLinks = (
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             <li className="nav-item">
-              <Link className="nav-link nav_spac" href="" to='/login'>
+              <Link className="nav-link nav_spac"  to='/login'>
                 Login
               </Link>
             </li>
@@ -107,7 +107,7 @@ class Navbar extends Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/#">
             Task Master
           </a>
           {this.props.auth.isAuthenticated ? authLinks : guestLinks }

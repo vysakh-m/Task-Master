@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import isEmpty from "../../validation/is-empty";
 import { applyFilter, exitFilter } from "../../actions/filterActions";
 
 class Filterbox extends Component {
@@ -53,8 +52,7 @@ class Filterbox extends Component {
       end_time: this.state.end_time,
       from: this.props.from,
     };
-    console.log(filterData);
-    console.log(this.props);
+
     this.props.applyFilter(filterData);
   }
 

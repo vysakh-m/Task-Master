@@ -1,4 +1,4 @@
-import { LIST_LOADING, LIST_TASK, EDIT_DATA } from "../actions/types";
+import { LIST_LOADING, LIST_TASK } from "../actions/types";
 
 const initialState = {
   loading: false,

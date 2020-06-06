@@ -10,7 +10,6 @@ export const editModal = (data) => (dispatch) => {
 };
 
 export const editSubmit = (taskData) => (dispatch) => {
-  console.log(taskData);
   axios
     .post("/list/edit", taskData)
     .then((data) => {

@@ -39,7 +39,6 @@ class ModalExample extends Component {
       date.substring(5, 7) +
       "-" +
       date.substring(0, 4);
-    console.log(db_date);
     const newTask = {
       name: this.state.name,
       label: this.state.label,
@@ -54,7 +53,6 @@ class ModalExample extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.modalData.show) {
-      console.log("SHOW CHANGE");
       this.setState({
         show: nextProps.modalData.show,
       });
@@ -76,7 +74,6 @@ class ModalExample extends Component {
         date.substring(3, 5) +
         "-" +
         date.substring(0, 2);
-      console.log(f_date);
       this.setState({
         name: nextProps.modalData.editData.name,
         label: nextProps.modalData.editData.label,
@@ -96,7 +93,6 @@ class ModalExample extends Component {
   };
 
   render() {
-    console.log(this.state);
     let toggle = () => {
       this.props.closeModel();
       this.setState({

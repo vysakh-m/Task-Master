@@ -217,13 +217,7 @@ router.post(
 
           finalFilter = listData;
 
-          console.log("INITIAL");
 
-          console.log(finalFilter.length);
-
-          //if from archive route
-          console.log(req.body.from);
-          console.log(finalFilter);
 
           if (req.body.from === "archive") {
             finalFilter = finalFilter.filter(function (item) {
@@ -234,22 +228,18 @@ router.post(
               return item.status !== "Completed";
             });
           }
-          console.log(finalFilter);
+
 
           if (isAllKeyFalse(label_object) != undefined) {
             finalFilter = finalFilter.filter(isLabelPresent);
           }
 
-          console.log("LABEL");
-          console.log(finalFilter.length);
+
 
           if (isAllKeyFalse(priority_object) != undefined) {
             finalFilter = finalFilter.filter(isPriorityPresent);
           }
 
-          console.log("PRIORITY");
-
-          console.log(finalFilter.length);
 
           //date filter not empty condition
 
@@ -278,7 +268,6 @@ router.post(
             });
             finalFilter = dateFiltered;
           } else if (!isEmpty(start_date) && isEmpty(end_date)) {
-            console.log("IF ELSE");
             var end_date_local = new Date();
             var end_d = end_date_local.toISOString().substring(0, 10);
             var start_parts = start_date.split("-");
@@ -297,7 +286,7 @@ router.post(
               return moment(item).format("DD-MM-YYYY");
             });
 
-            console.log(clean_date);
+
             var dateFiltered = [];
             finalFilter.forEach(function (item) {
               clean_date.forEach(function (date_item) {
@@ -307,11 +296,9 @@ router.post(
               });
             });
             finalFilter = dateFiltered;
-            console.log(finalFilter);
-          }
-          console.log("DATE");
 
-          console.log(finalFilter.length);
+          }
+
 
           //time filtering
 
@@ -329,9 +316,7 @@ router.post(
             finalFilter = timeFiltered;
           }
 
-          console.log("TIME");
 
-          console.log(finalFilter.length);
           return res.json(finalFilter);
         }
       })

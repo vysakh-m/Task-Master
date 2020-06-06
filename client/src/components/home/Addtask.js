@@ -70,7 +70,7 @@ class Addtask extends Component {
               id="inlineFormInputName2"
               name="name"
               placeholder="Enter Task"
-              a
+              
             />
 
             <select
